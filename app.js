@@ -1,4 +1,5 @@
 /////// app.js
+
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
@@ -8,10 +9,9 @@ const mongoose = require("mongoose");
 const { nextTick } = require("process");
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
-const mongoDB = require('./mongoDB');
 
-
-const URI = mongoDB.URI;
+require('dotenv').config();
+const URI = process.env.MONGODB_URI;
 mongoose.connect(URI, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
